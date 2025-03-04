@@ -8,8 +8,8 @@ interface BlockShowPageProps {
   };
 }
 
-export default async function BlockShowPage(props: BlockShowPageProps) {
-  const { id } = await props.params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
+export default async function BlockShowPage({ params }:  BlockShowPageProps) {
+  const { id } = await params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
   const block = await findBlock(parseInt(id));
 
   if (!block) {

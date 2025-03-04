@@ -8,8 +8,8 @@ interface EditBlockPageProps {
   };
 }
 
-export default async function EditBlockPage(props: EditBlockPageProps) {
-  const { id } = await props.params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
+export default async function EditBlockPage({ params }: EditBlockPageProps) {
+  const { id } = await params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
   const block = await findBlock(parseInt(id));
 
   if (!block) {
@@ -18,8 +18,11 @@ export default async function EditBlockPage(props: EditBlockPageProps) {
 
   async function handleEdit(formData: FormData) {
     'use server';
-    const title = formData.get('title') as string;
-    const code = formData.get('code') as string;
+    const title = formData.get('title')?.toString().trim() || '';
+    const code = formData.get('code')?.toString().trim() || '';
+
+    if (!title || !code) return;
+
     await editBlock(parseInt(id), title, code);
     redirect(`/blocks/${id}`);
   }
