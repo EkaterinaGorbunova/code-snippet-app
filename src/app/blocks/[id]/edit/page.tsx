@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { findBlock, editBlock } from '@/db/actions';
+import { findBlock, editBlock } from '@/db';
 
 interface EditBlockPageProps {
   params: {
@@ -51,19 +51,18 @@ export default async function EditBlockPage(props: EditBlockPageProps) {
         </div>
 
         <div className='flex gap-4'>
-        <button
-          type='submit'
-          className='px-6 py-1.5 w-fit p-2 border rounded bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
-        >
-          Save
-        </button>
+          <button
+            type='submit'
+            className='px-6 py-1.5 w-fit p-2 border rounded bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
+          >
+            Save
+          </button>
 
-        <Link href={`/blocks/${id}`}>
-        <button className="px-3 py-1.5 border rounded hover:bg-gray-200 text-black cursor-pointer">
-          Cancel
-        </button>
-      </Link>
-        
+          <Link href={`/blocks/${id}`}>
+            <button className='px-3 py-1.5 w-fit border rounded hover:bg-gray-200 text-black cursor-pointer'>
+              Cancel
+            </button>
+          </Link>
         </div>
       </div>
     </form>

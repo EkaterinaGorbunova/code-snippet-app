@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
-import { addBlock } from '@/db/actions';
+import { addBlock } from '@/db';
 import { db } from '@/db';
 
 export default function BlockCreatePage() {
