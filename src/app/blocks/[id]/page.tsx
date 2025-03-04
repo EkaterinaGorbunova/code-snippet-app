@@ -1,4 +1,4 @@
-import { db } from "@/db";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { findBlock, editBlock, deleteBlock } from "@/db/actions";
 
@@ -18,19 +18,21 @@ export default async function BlockShowPage(props: BlockShowPageProps) {
 
   async function handleDelete() {
     "use server";
-    await deleteBlock(block.id);
+    await deleteBlock(parseInt(id));
     redirect("/");
   }
 
   return (
-    <div>
-      <div className="flex m-4 justify-between items-center">
+    <>
+      <div className="flex mt-4 mb-4 justify-between items-center">
         <h1 className="text-xl font-bold">{block.title}</h1>
         <div className="flex gap-4">
-          <button className="p-2 border rounded">Edit</button>
+          <Link href={`/blocks/${block.id}/edit`}>
+            <button className="p-2 border rounded hover:bg-gray-200 cursor-pointer">Edit</button>
+          </Link>
 
           <form action={handleDelete}>
-            <button type="submit" className="p-2 border rounded bg-red-500 text-white">
+            <button type="submit" className="p-2 border rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer">
               Delete
             </button>
           </form>
@@ -39,6 +41,6 @@ export default async function BlockShowPage(props: BlockShowPageProps) {
       <pre className="p-3 border rounded bg-gray-200 border-gray-200">
         <code>{block.code}</code>
       </pre>
-    </div>
+    </>
   );
 }
