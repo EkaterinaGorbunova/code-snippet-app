@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { addBlock } from '@/db';
 
@@ -37,12 +38,21 @@ export default function BlockCreatePage() {
           />
         </div>
 
-        <button
-          type='submit'
-          className='px-6 py-1.5 w-fit rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor cursor-pointer'
-        >
-          Create
-        </button>
+        <div className='flex gap-4'>
+          <button
+            type='submit'
+            className='px-6 py-1.5 w-fit rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor cursor-pointer'
+          >
+            Create
+          </button>
+
+          <Link
+            href='/'
+            className='px-6 py-2 w-fit rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor cursor-pointer'
+          >
+            Cancel
+          </Link>
+        </div>
       </div>
     </form>
   );
