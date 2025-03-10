@@ -1,22 +1,19 @@
-'use client';
-
-import { useState } from 'react';
 import { redirect } from 'next/navigation';
 import { addBlock } from '@/db';
-import { db } from '@/db';
 
 export default function BlockCreatePage() {
-  const [title, setTitle] = useState<string>('');
-  const [code, setCode] = useState<string>('');
+  async function handleSubmit(formData: FormData) {
+    'use server';
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    await addBlock({ title, code });
-    redirect('/');
+    const title = formData.get('title')?.toString() || '';
+    const code = formData.get('code')?.toString() || '';
+
+    const newBlock = await addBlock({ title, code });
+    redirect(`/blocks/${newBlock.id}`);
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+    <form action={handleSubmit} className='flex flex-col gap-4'>
       <h3 className='text-xl font-bold m-4'>Create a Block</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>
@@ -25,8 +22,6 @@ export default function BlockCreatePage() {
             name='title'
             className='border rounded p-2 w-full'
             id='title'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
@@ -37,8 +32,6 @@ export default function BlockCreatePage() {
             name='code'
             className='border rounded p-2 w-full'
             id='code'
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
             rows={6}
             required
           />

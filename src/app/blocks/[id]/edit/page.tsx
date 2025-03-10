@@ -58,7 +58,7 @@ export default async function EditBlockPage({ params }: EditBlockPageProps) {
             type='submit'
             className='px-6 py-1.5 w-fit p-2 border rounded bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
           >
-            Save
+            Update
           </button>
 
           <Link href={`/blocks/${id}`}>
