@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { findBlock, deleteBlock } from '@/db';
+import DeleteForm from './DeleteForm';
 
 interface BlockShowPageProps {
   params: {
@@ -39,14 +40,7 @@ export default async function BlockShowPage({ params }:  BlockShowPageProps) {
             </button>
           </Link>
 
-          <form action={handleDelete}>
-            <button
-              type='submit'
-              className='px-3 py-1.5 w-fit p-2 border rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer'
-            >
-              Delete
-            </button>
-          </form>
+          <DeleteForm onDelete={handleDelete} />
         </div>
       </div>
       <pre className='p-3 border rounded bg-gray-200 border-gray-200'>

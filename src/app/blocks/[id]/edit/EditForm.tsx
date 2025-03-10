@@ -7,7 +7,7 @@ interface EditFormProps {
   id: string;
   initialTitle: string;
   initialCode: string;
-  onSubmit: (formData: FormData) => Promise<void>;
+  onEdit: (formData: FormData) => Promise<void>;
 }
 
 function SubmitButton() {
@@ -25,7 +25,7 @@ function SubmitButton() {
   );
 }
 
-export default function EditForm({ id, initialTitle, initialCode, onSubmit }: EditFormProps) {
+export default function EditForm({ id, initialTitle, initialCode, onEdit }: EditFormProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (!confirm('Are you sure you want to update this block?')) {
       e.preventDefault();
@@ -35,7 +35,7 @@ export default function EditForm({ id, initialTitle, initialCode, onSubmit }: Ed
   return (
     // action={onSubmit} - Server Action that processes form data on the server side
     // onSubmit={handleSubmit} - Client-Side event handler that runs before form submission, used for confirmation dialogue
-    <form action={onSubmit} onSubmit={handleSubmit} className='flex flex-col gap-4'>
+    <form action={onEdit} onSubmit={handleSubmit} className='flex flex-col gap-4'>
       <h3 className='text-xl font-bold mb-4'>Edit Block</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>

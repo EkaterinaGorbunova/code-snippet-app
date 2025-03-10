@@ -32,7 +32,7 @@ export default async function EditBlockPage({ params }: EditBlockPageProps) {
       id={id}
       initialTitle={block.title}
       initialCode={block.code}
-      onSubmit={handleEdit}
+      onEdit={handleEdit}
     />
   );
 }
