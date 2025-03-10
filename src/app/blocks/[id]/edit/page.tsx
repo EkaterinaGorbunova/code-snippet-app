@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { findBlock, editBlock } from '@/db';
+import EditForm from './EditForm';
 
 interface EditBlockPageProps {
   params: {
@@ -28,46 +28,11 @@ export default async function EditBlockPage({ params }: EditBlockPageProps) {
   }
 
   return (
-    <form action={handleEdit} className='flex flex-col gap-4'>
-      <h3 className='text-xl font-bold mb-4'>Edit Block</h3>
-      <div className='flex flex-col gap-4'>
-        <div className='flex gap-4'>
-          <label className='w-12'>Title</label>
-          <input
-            name='title'
-            className='p-2 border rounded w-full'
-            id='title'
-            defaultValue={block.title}
-            required
-          />
-        </div>
-        <div className='flex gap-4'>
-          <label className='w-12'>Code</label>
-          <textarea
-            name='code'
-            className='p-2 border rounded w-full'
-            id='code'
-            defaultValue={block.code}
-            rows={6}
-            required
-          />
-        </div>
-
-        <div className='flex gap-4'>
-          <button
-            type='submit'
-            className='px-6 py-1.5 w-fit p-2 border rounded bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
-          >
-            Update
-          </button>
-
-          <Link href={`/blocks/${id}`}>
-            <button className='px-3 py-1.5 w-fit border rounded hover:bg-gray-200 text-black cursor-pointer'>
-              Cancel
-            </button>
-          </Link>
-        </div>
-      </div>
-    </form>
+    <EditForm
+      id={id}
+      initialTitle={block.title}
+      initialCode={block.code}
+      onSubmit={handleEdit}
+    />
   );
 }

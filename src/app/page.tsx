@@ -4,7 +4,7 @@ import { db } from '@/db';
 export default async function Home() {
   const blocks = await db.blocks.findMany();
 
-  const renderedBlocks = blocks.map((block) => {
+  const codeBlocks = blocks.map((block) => {
     return (
       <Link
         key={block.id}
@@ -28,7 +28,7 @@ export default async function Home() {
           Create
         </Link>
       </div>
-      <div className='flex flex-col gap-2'>{renderedBlocks}</div>
+      <div className='flex flex-col gap-2'>{codeBlocks}</div>
     </div>
   );
 }

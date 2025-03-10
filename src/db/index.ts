@@ -50,3 +50,4 @@ export async function deleteBlock(id: number) {
     throw new Error('Failed to delete block.');
   }
 }
+
