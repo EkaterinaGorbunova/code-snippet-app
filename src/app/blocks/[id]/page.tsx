@@ -43,7 +43,7 @@ export default async function BlockShowPage({ params }:  BlockShowPageProps) {
           <DeleteForm onDelete={handleDelete} />
         </div>
       </div>
-      <pre className='p-3 border rounded bg-gray-200 border-gray-200'>
+      <pre className='p-3 border rounded bg-gray-200 border-gray-200 whitespace-pre-wrap break-words'>
         <code>{block.code}</code>
       </pre>
     </>
