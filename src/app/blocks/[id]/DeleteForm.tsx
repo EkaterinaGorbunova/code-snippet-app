@@ -6,8 +6,9 @@ interface DeleteFormProps {
 
 export default function DeleteForm({ onDelete }: DeleteFormProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (!confirm('Are you sure you want to delete this block?')) {
+    if (!confirm('Are you sure you want to DELETE this block?')) {
       e.preventDefault();
+      return;
     }
   };
 

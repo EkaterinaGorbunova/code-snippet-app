@@ -27,8 +27,9 @@ function SubmitButton() {
 
 export default function EditForm({ id, initialTitle, initialCode, onEdit }: EditFormProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (!confirm('Are you sure you want to update this block?')) {
+    if (!confirm('Are you sure you want to UPDATE this block?')) {
       e.preventDefault();
+      return;
     }
   };
 
