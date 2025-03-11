@@ -3,18 +3,18 @@ import { redirect } from 'next/navigation';
 import { addBlock } from '@/db';
 
 export default function BlockCreatePage() {
-  async function handleSubmit(formData: FormData) {
+  async function createBlock(formData: FormData) {
     'use server';
 
-    const title = formData.get('title')?.toString() || '';
-    const code = formData.get('code')?.toString() || '';
+    const title = formData.get('title') as string;
+    const code = formData.get('code') as string;
 
     const newBlock = await addBlock({ title, code });
     redirect(`/blocks/${newBlock.id}`);
   }
 
   return (
-    <form action={handleSubmit} className='flex flex-col gap-4'>
+    <form action={createBlock} className='flex flex-col gap-4'>
       <h3 className='text-xl font-bold m-4'>Create a Block</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>
