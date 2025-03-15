@@ -1,17 +1,16 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { addBlock } from '@/db';
+import { createBlock } from '@/actions/dbServices';
 
 export default function BlockCreatePage() {
-  async function createBlock(formData: FormData) {
-    'use server';
+  // async function createBlock(formData: FormData) {
 
-    const title = formData.get('title') as string;
-    const code = formData.get('code') as string;
+  //   const title = formData.get('title') as string;
+  //   const code = formData.get('code') as string;
 
-    const newBlock = await addBlock({ title, code });
-    redirect(`/blocks/${newBlock.id}`);
-  }
+  //   const newBlock = await addBlock({ title, code });
+  //   redirect(`/blocks/${newBlock.id}`);
+  // }
 
   return (
     <form action={createBlock} className='flex flex-col gap-4'>
@@ -20,6 +19,7 @@ export default function BlockCreatePage() {
         <div className='flex gap-4'>
           <label className='w-12' htmlFor='title'>Title</label>
           <input
+            type="text"
             name='title'
             className='border rounded p-2 w-full'
             id='title'

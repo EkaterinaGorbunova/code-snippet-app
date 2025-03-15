@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { findBlock, deleteBlock } from '@/db';
+import { findBlock, deleteBlock } from '@/database';
 import DeleteForm from './DeleteForm';
 
 interface BlockShowPageProps {

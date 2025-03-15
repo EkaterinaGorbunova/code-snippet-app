@@ -14,17 +14,17 @@ export async function findBlock(id: number) {
   }
 }
 
-export async function addBlock({ title, code }: { title: string; code: string }) {
-  try {
-    const newBlock = await db.blocks.create({
-      data: { title, code},
-    });
-    return newBlock;
-  } catch (error) {
-    console.error('Error creating a new block:', error);
-    throw new Error('Failed to create a new block.');
-  }
-}
+// export async function addBlock({ title, code }: { title: string; code: string }) {
+//   try {
+//     const newBlock = await db.blocks.create({
+//       data: { title, code},
+//     });
+//     return newBlock;
+//   } catch (error) {
+//     console.error('Error creating a new block:', error);
+//     throw new Error('Failed to create a new block.');
+//   }
+// }
 
 export async function editBlock(id: number, title: string, code: string) {
   try {

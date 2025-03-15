@@ -10,8 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Blocks {
-  id    Int      @id @default(autoincrement())
-  title String
-  code  String
+
+model Block {
+  id      Int     @id @default(autoincrement())
+  title   String
+  code    String
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int // foreign key
+}
+
+model User {
+  id        Int      @id @default(autoincrement()) // primary key
+  username  String   @unique
+  password  String
+  blocks    Block[]
 }

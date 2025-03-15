@@ -1,8 +1,21 @@
 import Link from 'next/link';
-import { db } from '@/db';
+import { db } from '@/database';
+import { getUser } from '@/actions/authServices';
+import { redirect } from 'next/navigation';
+import { User } from 'lucide-react';
 
 export default async function Home() {
-  const blocks = await db.blocks.findMany();
+  const user = await getUser();
+
+  if (!user) {
+    redirect('/login');
+  }
+
+  const blocks = await db.block.findMany({
+    where: {
+      userId: user.id,
+    },
+  });
 
   const codeBlocks = blocks.map((block) => {
     return (
@@ -19,8 +32,16 @@ export default async function Home() {
 
   return (
     <div>
+      <header className='py-4 rounded-lg'>
+        <div className='container mx-auto flex items-center gap-3'>
+          <User className='h-6 w-6' />
+          { user && <h1 className='text-2xl font-bold text-primary'>Welcome, {user.username}</h1> }
+        </div>
+      </header>
       <div className='flex mt-2 mb-2 justify-between items-center'>
-        <h1 className='text-xl font-bold'>Blocks</h1>
+        <div>
+          <h1 className='text-xl font-bold'>Blocks</h1>
+        </div>
         <Link
           href='/blocks/create'
           className='border p-2 rounded bg-blue-500 hover:bg-blue-600 text-white'
