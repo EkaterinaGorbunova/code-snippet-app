@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { findBlock, deleteBlock } from '@/actions/dbServices';
 import DeleteForm from './DeleteForm';
+import { Button } from '@/components/ui/button';
 
 interface BlockShowPageProps {
   params: {
@@ -28,16 +29,17 @@ export default async function BlockShowPage({ params }:  BlockShowPageProps) {
       <div className='flex mt-4 mb-4 justify-between items-center'>
         <h1 className='text-xl font-bold'>{block.title}</h1>
         <div className='flex gap-4'>
+
           <Link href='/'>
-            <button className='px-3 py-1.5 w-fit p-2 border rounded hover:bg-gray-200 cursor-pointer'>
+            <Button variant="outline">
               Home
-            </button>
+            </Button>
           </Link>
 
           <Link href={`/blocks/${block.id}/edit`}>
-            <button className='px-3 py-1.5 w-fit p-2 border rounded hover:bg-gray-200 cursor-pointer'>
+            <Button variant="outline">
               Edit
-            </button>
+            </Button>
           </Link>
 
           <DeleteForm onDelete={handleDelete} />

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createBlock } from '@/actions/dbServices';
+import { Button } from '@/components/ui/button';
 
 export default function BlockCreatePage() {
 
@@ -31,18 +32,14 @@ export default function BlockCreatePage() {
         </div>
 
         <div className='flex gap-4'>
-          <button
-            type='submit'
-            className='px-6 py-1.5 w-fit rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor cursor-pointer'
-          >
+          <Button type='submit' className='bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'>
             Create
-          </button>
+          </Button>
 
-          <Link
-            href='/'
-            className='px-6 py-2 w-fit rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor cursor-pointer'
-          >
-            Cancel
+          <Link href='/'>
+            <Button variant="outline">
+              Cancel
+            </Button>
           </Link>
         </div>
       </div>
