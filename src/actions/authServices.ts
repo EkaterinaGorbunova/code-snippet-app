@@ -5,6 +5,26 @@ import { db } from '@/database';
 import { redirect } from 'next/navigation';
 import { setSessionCookie } from './helperFunctions';
 
+
+export async function register(formData: FormData) {
+  const username = formData.get('username') as string;
+  const password = formData.get('password') as string;
+
+  const existingUser = await db.user.findUnique({
+    where: { username },
+  });
+
+  if (existingUser) {
+    redirect('/register?error=User%20already%20exists');
+  }
+
+  await db.user.create({
+    data: { username, password },
+  });
+
+  redirect('/login?success=Account%20created%20successfully!');
+}
+
 export async function login(formData: FormData) {
   const username = formData.get('username') as string;
   const password = formData.get('password') as string;

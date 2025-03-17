@@ -1,29 +1,35 @@
 import type React from "react";
+import { redirect } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 import { getBaseUrl } from "@/actions/helperFunctions";
 import { getUser } from "@/actions/authServices";
-import { redirect } from "next/navigation";
+import { register } from "@/actions/authServices";
 
-export default async function RegisterPage() {
+export default async function RegisterPage({ searchParams }: { searchParams: { error?: string } }) {
   const user = await getUser();
   
   if (user) {
     redirect('/');
   }
 
+  const { error } = searchParams;
+  const errorMessage = error ? decodeURIComponent(error) : ''; 
   const baseUrl = await getBaseUrl();
 
   return (
     <div className="flex justify-center items-center min-h-[400px] p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-bold">Register</h1>
-          <p className="text-muted-foreground">Enter your credentials to access your account</p>
+          <h1 className="text-2xl font-bold">Create Account</h1>
+          <p className="text-muted-foreground">Create your account to store and manage code snippets</p>
         </div>
 
-        <form className="space-y-4">
+        <form action={register} className="space-y-4">
+          { errorMessage && <p className="text-center text-red-500">{errorMessage}</p> }
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
             <Input

@@ -14,20 +14,23 @@ export default async function LoginPage({ searchParams }: { searchParams: { erro
     redirect('/');
   }
 
-  const {error} = searchParams;
+  const { error, success } = searchParams;
   const errorMessage = error ? decodeURIComponent(error) : '';
+  const successMessage = success ? decodeURIComponent(success) : '';
   const baseUrl = await getBaseUrl();
 
   return (
     <div className="flex justify-center items-center min-h-[400px] p-4">
       <div className="w-full max-w-md space-y-6">
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Login</h1>
           <p className="text-muted-foreground">Enter your credentials to access your account</p>
         </div>
 
         <form action={login} className="space-y-4">
+          {successMessage && <p className="text-center text-green-500">{successMessage}</p>}
+          {errorMessage && <p className="text-center text-red-500">{errorMessage}</p>}
+
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
             <Input

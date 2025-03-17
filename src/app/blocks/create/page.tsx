@@ -3,14 +3,6 @@ import { redirect } from 'next/navigation';
 import { createBlock } from '@/actions/dbServices';
 
 export default function BlockCreatePage() {
-  // async function createBlock(formData: FormData) {
-
-  //   const title = formData.get('title') as string;
-  //   const code = formData.get('code') as string;
-
-  //   const newBlock = await addBlock({ title, code });
-  //   redirect(`/blocks/${newBlock.id}`);
-  // }
 
   return (
     <form action={createBlock} className='flex flex-col gap-4'>

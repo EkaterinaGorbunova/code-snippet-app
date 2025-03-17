@@ -6,7 +6,6 @@ export async function getBaseUrl() {
   const headersList = await headers();
   const host = headersList.get('host') || '';
   const protocol = headersList.get('x-forwarded-proto') || 'http';
-  console.log(host, protocol)
   return `${protocol}://${host}`;
 }
 
@@ -17,6 +16,6 @@ export const setSessionCookie = async (sessionToken: string) => {
     httpOnly: true,
     secure: false,
     sameSite: 'lax',
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
   });
 };
