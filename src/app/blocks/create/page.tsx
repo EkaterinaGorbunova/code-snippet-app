@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import { createBlock } from '@/actions/dbServices';
 import { Button } from '@/components/ui/button';
 
 export default function BlockCreatePage() {
-
   return (
     <form action={createBlock} className='flex flex-col gap-4'>
-      <h3 className='text-xl font-bold m-4'>Create a Block</h3>
+      <h3 className='text-xl font-bold m-4'>Create Block</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>
           <label className='w-12' htmlFor='title'>Title</label>

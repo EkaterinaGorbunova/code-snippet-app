@@ -24,7 +24,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: { e
     <div className="flex justify-center items-center min-h-[400px] p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-bold">Create Account</h1>
+          <h1 className="text-2xl font-bold">Register</h1>
           <p className="text-muted-foreground">Create your account to store and manage code snippets</p>
         </div>
 

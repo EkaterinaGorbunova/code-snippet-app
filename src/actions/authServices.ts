@@ -5,7 +5,6 @@ import { db } from '@/database';
 import { redirect } from 'next/navigation';
 import { setSessionCookie } from './helperFunctions';
 
-
 export async function register(formData: FormData) {
   const username = formData.get('username') as string;
   const password = formData.get('password') as string;

@@ -43,7 +43,7 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
           <div className='flex items-center gap-3'>
             <User className='h-6 w-6 text-gray-600' />
             <h1 className='text-2xl font-bold text-gray-800'>
-              Welcome, {user.username}
+              Welcome, {user.username}!
             </h1>
           </div>
           <form action={logout}>
@@ -65,7 +65,7 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
 
       <main className='mt-8'>
         <div className='flex justify-between items-center mb-6'>
-          <h2 className='text-xl font-bold text-gray-800'>Your Code Blocks</h2>
+          <h2 className='text-xl font-bold text-gray-800'>Code Blocks</h2>
           <Link href='/blocks/create'>
             <Button className='bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'>
               Create New Block
