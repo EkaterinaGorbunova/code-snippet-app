@@ -26,10 +26,9 @@ export default async function BlockShowPage({ params }:  BlockShowPageProps) {
 
   return (
     <>
-      <div className='flex mt-4 mb-4 justify-between items-center'>
+      <div className='flex flex-col sm:flex-row mt-4 mb-4 justify-between items-start sm:items-center gap-4 sm:gap-0'>
         <h1 className='text-xl font-bold'>{block.title}</h1>
-        <div className='flex gap-4'>
-
+        <div className='flex gap-4 w-full sm:w-auto'>
           <Link href='/'>
             <Button variant="outline">
               Home

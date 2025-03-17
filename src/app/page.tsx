@@ -27,8 +27,8 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
         href={`/blocks/${block.id}`}
         className='flex justify-between items-center p-2 border rounded hover:bg-gray-50'
       >
-        <div>{block.title}</div>
-        <div>View</div>
+        <div className="flex-1 mr-4">{block.title}</div>
+        <div className="text-gray-500">View</div>
       </Link>
     );
   });
@@ -39,7 +39,7 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
   return (
     <div className="container mx-auto px-4">
       <header className='py-6'>
-        <nav className='flex items-center justify-between'>
+        <nav className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0'>
           <div className='flex items-center gap-3'>
             <User className='h-6 w-6 text-gray-600' />
             <h1 className='text-2xl font-bold text-gray-800'>
@@ -49,7 +49,7 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
           <form action={logout}>
             <Button 
               variant="outline"
-              className='text-gray-600 hover:text-gray-800 hover:bg-gray-100 cursor-pointer'
+              className='w-full sm:w-auto text-gray-600 hover:text-gray-800 hover:bg-gray-100 cursor-pointer'
             >
               <LogOut className='h-5 w-5' />
               Logout
@@ -64,10 +64,10 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
       </header>
 
       <main className='mt-8'>
-        <div className='flex justify-between items-center mb-6'>
+        <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6'>
           <h2 className='text-xl font-bold text-gray-800'>Code Blocks</h2>
-          <Link href='/blocks/create'>
-            <Button className='bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'>
+          <Link href='/blocks/create' className='w-full sm:w-auto'>
+            <Button className='w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'>
               Create New Block
             </Button>
           </Link>
