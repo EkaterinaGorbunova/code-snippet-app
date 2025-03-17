@@ -62,6 +62,11 @@ npm install
 npx prisma migrate dev
 ```
 
+4. Open Prisma Studio to view your database: 
+```bash
+npx prisma studio
+```
+
 4. Run the development server:
 ```bash
 npm run dev

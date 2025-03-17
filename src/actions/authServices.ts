@@ -5,6 +5,20 @@ import { db } from '@/database';
 import { redirect } from 'next/navigation';
 import { setSessionCookie } from './helperFunctions';
 
+export async function getUser() {
+  const sessionToken = (await cookies()).get('session_token')?.value;
+  
+  if (!sessionToken) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(sessionToken);
+  } catch {
+    return null;
+  }
+}
+
 export async function register(formData: FormData) {
   const username = formData.get('username') as string;
   const password = formData.get('password') as string;
@@ -61,18 +75,4 @@ export async function logout() {
   
   cookieStore.delete('session_token');
   redirect('/login?success=You%20have%20been%20successfully%20logged%20out');
-}
-
-export async function getUser() {
-  const sessionToken = (await cookies()).get('session_token')?.value;
-  
-  if (!sessionToken) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(sessionToken);
-  } catch {
-    return null;
-  }
 }

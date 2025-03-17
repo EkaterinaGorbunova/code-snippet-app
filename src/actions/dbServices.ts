@@ -6,14 +6,23 @@ import { getUser } from './authServices';
 
 export const createBlock = async (formData: FormData) => {
   const user = await getUser();
-  
-  // formData is the data from the input fields in the form
+  if (!user) {
+    redirect('/login');
+  }
+
   const title = formData.get('title') as string;
   const code = formData.get('code') as string;
 
-  const newBlock = await db.block.create({
-    data: { title, code, user: { connect: { id: user.id } } }
-  });
+  let newBlock;
+
+  try {
+    newBlock = await db.block.create({
+      data: { title, code, user: { connect: { id: user.id } } },
+    });
+  } catch (error) {
+    console.error('Error creating block:', error);
+    redirect('/?error=' + encodeURIComponent('Failed to create block'));
+  }
 
   redirect(`/blocks/${newBlock.id}`);
 };
@@ -29,17 +38,20 @@ export async function findBlock(id: number) {
   }
 }
 
-export async function editBlock(id: number, title: string, code: string) {
+export async function editBlock(id: number, formData: FormData) {
+  const title = formData.get('title') as string;
+  const code = formData.get('code') as string;
+
   try {
-    const editedBlock = await db.block.update({
+    await db.block.update({
       where: { id },
       data: { title, code },
     });
-
-    return editedBlock;
   } catch (error) {
-    console.error('Error editing block:', error);
+    console.error('Error updating block:', error);
   }
+
+  redirect(`/blocks/${id}`);
 }
 
 export async function deleteBlock(id: number) {
@@ -51,5 +63,3 @@ export async function deleteBlock(id: number) {
     console.error('Error deleting block:', error);
   }
 }
-
-

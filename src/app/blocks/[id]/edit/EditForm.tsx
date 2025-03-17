@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useFormStatus } from 'react-dom';
 import { useState } from 'react';
+import { useFormStatus } from 'react-dom';
+
+import { editBlock } from '@/actions/dbServices';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,7 +20,6 @@ interface EditFormProps {
   id: string;
   initialTitle: string;
   initialCode: string;
-  onEdit: (formData: FormData) => Promise<void>;
 }
 
 function SubmitButton() {
@@ -35,7 +36,7 @@ function SubmitButton() {
   );
 }
 
-export default function EditForm({ id, initialTitle, initialCode, onEdit }: EditFormProps) {
+export default function EditForm({ id, initialTitle, initialCode }: EditFormProps) {
   const [showDialog, setShowDialog] = useState(false);
   const [formData, setFormData] = useState<FormData | null>(null);
 
@@ -48,7 +49,7 @@ export default function EditForm({ id, initialTitle, initialCode, onEdit }: Edit
 
   const handleConfirm = async () => {
     if (formData) {
-      await onEdit(formData);
+      await editBlock(parseInt(id), formData);
     }
     setShowDialog(false);
   };

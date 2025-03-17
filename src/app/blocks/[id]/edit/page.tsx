@@ -16,23 +16,11 @@ export default async function EditBlockPage({ params }: EditBlockPageProps) {
     return notFound();
   }
 
-  async function handleEdit(formData: FormData) {
-    'use server';
-    const title = formData.get('title')?.toString().trim() || '';
-    const code = formData.get('code')?.toString().trim() || '';
-
-    if (!title || !code) return;
-
-    await editBlock(parseInt(id), title, code);
-    redirect(`/blocks/${id}`);
-  }
-
   return (
     <EditForm
       id={id}
       initialTitle={block.title}
       initialCode={block.code}
-      onEdit={handleEdit}
-    />
+      />
   );
 }

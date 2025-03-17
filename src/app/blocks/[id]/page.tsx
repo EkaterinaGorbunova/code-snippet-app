@@ -29,18 +29,11 @@ export default async function BlockShowPage({ params }:  BlockShowPageProps) {
       <div className='flex flex-col sm:flex-row mt-4 mb-4 justify-between items-start sm:items-center gap-4 sm:gap-0'>
         <h1 className='text-xl font-bold'>{block.title}</h1>
         <div className='flex gap-4 w-full sm:w-auto'>
-          <Link href='/'>
-            <Button variant="outline">
-              Home
-            </Button>
-          </Link>
-
           <Link href={`/blocks/${block.id}/edit`}>
             <Button variant="outline">
               Edit
             </Button>
           </Link>
-
           <DeleteForm onDelete={handleDelete} />
         </div>
       </div>
