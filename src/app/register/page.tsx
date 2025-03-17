@@ -16,7 +16,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: { e
     redirect('/');
   }
 
-  const { error } = searchParams;
+  const { error } = await searchParams;
   const errorMessage = error ? decodeURIComponent(error) : ''; 
   const baseUrl = await getBaseUrl();
 

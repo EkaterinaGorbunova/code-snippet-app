@@ -50,6 +50,20 @@ export async function login(formData: FormData) {
   redirect('/');
 }
 
+export async function logout() {
+  'use server';
+  
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get('session_token');
+  
+  if (!sessionToken) {
+    redirect('/?error=Logout%20failed.%20Session%20already%20expired');
+  }
+  
+  cookieStore.delete('session_token');
+  redirect('/login?success=You%20have%20been%20successfully%20logged%20out');
+}
+
 export async function getUser() {
   const sessionToken = (await cookies()).get('session_token')?.value;
   

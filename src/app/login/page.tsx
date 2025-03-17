@@ -1,22 +1,25 @@
 import type React from 'react';
+import { redirect } from 'next/navigation';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+
+import { getUser } from '@/actions/authServices';
 import { login } from '@/actions/authServices';
 import { getBaseUrl } from '@/actions/helperFunctions';
-import { getUser } from '@/actions/authServices';
-import { redirect } from 'next/navigation';
 
-export default async function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+export default async function LoginPage({ searchParams }: { searchParams: { error?: string, success?: string } }) {
   const user = await getUser();
   
   if (user) {
     redirect('/');
   }
 
-  const { error, success } = searchParams;
+  const { error, success } = await searchParams;
   const errorMessage = error ? decodeURIComponent(error) : '';
   const successMessage = success ? decodeURIComponent(success) : '';
+
   const baseUrl = await getBaseUrl();
 
   return (

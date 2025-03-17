@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { findBlock, editBlock } from '@/database';
+import { findBlock, editBlock } from '@/actions/dbServices';
 import EditForm from './EditForm';
 
 interface EditBlockPageProps {
