@@ -9,16 +9,15 @@ import { getUser } from '@/actions/authServices';
 import { login } from '@/actions/authServices';
 import { getBaseUrl } from '@/actions/helperFunctions';
 
-export default async function LoginPage({ searchParams }: { searchParams: { error?: string, success?: string } }) {
+export default async function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
   const user = await getUser();
   
   if (user) {
     redirect('/');
   }
 
-  const { error, success } = await searchParams;
+  const { error } = await searchParams;
   const errorMessage = error ? decodeURIComponent(error) : '';
-  const successMessage = success ? decodeURIComponent(success) : '';
 
   const baseUrl = await getBaseUrl();
 
@@ -31,7 +30,6 @@ export default async function LoginPage({ searchParams }: { searchParams: { erro
         </div>
 
         <form action={login} className="space-y-4">
-          {successMessage && <p className="text-center text-green-500">{successMessage}</p>}
           {errorMessage && <p className="text-center text-red-500">{errorMessage}</p>}
 
           <div className="space-y-2">

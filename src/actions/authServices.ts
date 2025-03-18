@@ -6,14 +6,14 @@ import { redirect } from 'next/navigation';
 import { setSessionCookie } from './helperFunctions';
 
 export async function getUser() {
-  const sessionToken = (await cookies()).get('session_token')?.value;
+  const sessionId = (await cookies()).get('session_id')?.value;
   
-  if (!sessionToken) {
+  if (!sessionId) {
     return null;
   }
 
   try {
-    return JSON.parse(sessionToken);
+    return JSON.parse(sessionId);
   } catch {
     return null;
   }
@@ -39,11 +39,12 @@ export async function register(formData: FormData) {
 }
 
 export async function login(formData: FormData) {
-  const username = formData.get('username') as string;
-  const password = formData.get('password') as string;
-
+  
   const foundUser = await db.user.findUnique({
-    where: { username, password },
+    where: {
+      username: formData.get('username') as string,
+      password: formData.get('password') as string,
+    },
   });
 
   if (!foundUser) {
@@ -57,8 +58,8 @@ export async function login(formData: FormData) {
   };
   
   // Convert to string for cookie storage
-  const sessionToken = JSON.stringify(sessionData);
-  await setSessionCookie(sessionToken);
+  const sessionId = JSON.stringify(sessionData);
+  await setSessionCookie(sessionId);
 
   redirect('/');
 }
@@ -67,12 +68,12 @@ export async function logout() {
   'use server';
   
   const cookieStore = await cookies();
-  const sessionToken = cookieStore.get('session_token');
+  const sessionId = cookieStore.get('session_id');
   
-  if (!sessionToken) {
+  if (!sessionId) {
     redirect('/?error=Logout%20failed.%20Session%20already%20expired');
   }
   
-  cookieStore.delete('session_token');
+  cookieStore.delete('session_id');
   redirect('/login?success=You%20have%20been%20successfully%20logged%20out');
 }

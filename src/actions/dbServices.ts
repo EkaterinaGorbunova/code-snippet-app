@@ -21,7 +21,7 @@ export const createBlock = async (formData: FormData) => {
     });
   } catch (error) {
     console.error('Error creating block:', error);
-    redirect('/?error=' + encodeURIComponent('Failed to create block'));
+    redirect('/?error=Failed%20to%20create%20block');
   }
 
   redirect(`/blocks/${newBlock.id}`);

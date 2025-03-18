@@ -9,12 +9,12 @@ export async function getBaseUrl() {
   return `${protocol}://${host}`;
 }
 
-export const setSessionCookie = async (sessionToken: string) => {
+export const setSessionCookie = async (sessionId: string) => {
   (await cookies()).set({
-    name: 'session_token',
-    value: sessionToken,
+    name: 'session_id',
+    value: sessionId,
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: 'lax',
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
   });

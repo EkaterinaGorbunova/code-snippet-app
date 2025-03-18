@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { findBlock, deleteBlock } from '@/actions/dbServices';
-import DeleteForm from './DeleteForm';
 import { Button } from '@/components/ui/button';
+import DeleteForm from './DeleteForm';
 
 interface BlockShowPageProps {
   params: {
