@@ -23,7 +23,7 @@ This is App built with Next.js 15, using TypeScript, Tailwind CSS and Shadcn UI 
 
 ## Technical Stack
 The project follows a modern web architecture with:
-- Server-side rendering via Next.js 15.2
+- Server-side rendering via Next.js 15
 - Type safety with TypeScript
 - Responsive styling using Tailwind CSS
 - UI components from Shadcn UI library
@@ -36,12 +36,6 @@ The project follows a modern web architecture with:
 The App uses two main tables:
 - `User`: Stores user information (`id`, `username`, `password`)
 - `Block`: Stores code snippets (`id`, `title`, `code`, `userId`)
-
-## Environment Variables
-Create a `.env` file in the root directory with:
-```
-DATABASE_URL="file:./dev.db"
-```
 
 ## Getting Started
 
@@ -57,17 +51,24 @@ https://github.com/EkaterinaGorbunova/code-snippet-app.git
 npm install
 ```
 
-3. Set up your database:
+3. Add environment variable
+
+Create `.env` file in the root directory with:
+```
+DATABASE_URL="file:./dev.db"
+```
+
+4. Set up your database:
 ```bash
 npx prisma migrate dev
 ```
 
-4. Open Prisma Studio to view your database: 
+5. Open Prisma Studio to view your database: 
 ```bash
 npx prisma studio
 ```
 
-4. Run the development server:
+6. Run the development server:
 ```bash
 npm run dev
 ```
