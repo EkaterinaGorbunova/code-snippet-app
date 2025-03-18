@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useFormStatus } from 'react-dom';
-
+import Editor from '@monaco-editor/react';
 import { editBlock } from '@/actions/dbServices';
 import { Button } from '@/components/ui/button';
 import {
@@ -38,11 +38,14 @@ function SubmitButton() {
 export default function EditForm({ id, initialTitle, initialCode }: EditFormProps) {
   const [showDialog, setShowDialog] = useState(false);
   const [formData, setFormData] = useState<FormData | null>(null);
+  const [code, setCode] = useState(initialCode);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    setFormData(new FormData(form));
+    const formData = new FormData(form);
+    formData.set('code', code);
+    setFormData(formData);
     setShowDialog(true);
   };
 
@@ -55,12 +58,12 @@ export default function EditForm({ id, initialTitle, initialCode }: EditFormProp
 
   return (
     <>
-      <AlertDialog open={showDialog} onOpenChange={setShowDialog}>
+      <AlertDialog open={showDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Confirm Update</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to update this block?
+              This action will update the code block.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -89,19 +92,27 @@ export default function EditForm({ id, initialTitle, initialCode }: EditFormProp
           </div>
           <div className='flex gap-4'>
             <label className='w-12'>Code</label>
-            <textarea
-              name='code'
-              className='p-2 border rounded w-full'
-              id='code'
-              defaultValue={initialCode}
-              rows={6}
-              required
-            />
+            <div className='w-full h-[400px] border rounded'>
+              <Editor
+                height="100%"
+                defaultLanguage="javascript"
+                value={code}
+                onChange={(value) => setCode(value || '')}
+                options={{
+                  minimap: { enabled: false },
+                  fontSize: 14,
+                  lineNumbers: 'on',
+                  roundedSelection: false,
+                  scrollBeyondLastLine: false,
+                  readOnly: false,
+                  automaticLayout: true,
+                }}
+              />
+            </div>
           </div>
 
           <div className='flex gap-4'>
             <SubmitButton />
-
             <Link href={`/blocks/${id}`}>
               <Button variant="outline">
                 Cancel
@@ -113,3 +124,5 @@ export default function EditForm({ id, initialTitle, initialCode }: EditFormProp
     </>
   );
 }
+
+

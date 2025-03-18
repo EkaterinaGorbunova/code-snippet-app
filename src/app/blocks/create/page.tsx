@@ -1,10 +1,23 @@
+'use client';
+
 import Link from 'next/link';
 import { createBlock } from '@/actions/dbServices';
 import { Button } from '@/components/ui/button';
+import Editor from '@monaco-editor/react';
+import { useState } from 'react';
 
 export default function BlockCreatePage() {
+  const [code, setCode] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.set('code', code);
+    await createBlock(formData);
+  };
+
   return (
-    <form action={createBlock} className='flex flex-col gap-4'>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
       <h3 className='text-xl font-bold m-4'>Create Block</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>
@@ -20,13 +33,23 @@ export default function BlockCreatePage() {
 
         <div className='flex gap-4'>
           <label className='w-12' htmlFor='code'>Code</label>
-          <textarea
-            name='code'
-            className='border rounded p-2 w-full'
-            id='code'
-            rows={6}
-            required
-          />
+          <div className='w-full h-[400px] border rounded'>
+            <Editor
+              height="100%"
+              defaultLanguage="javascript"
+              value={code}
+              onChange={(value) => setCode(value || '')}
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                lineNumbers: 'on',
+                roundedSelection: false,
+                scrollBeyondLastLine: false,
+                readOnly: false,
+                automaticLayout: true,
+              }}
+            />
+          </div>
         </div>
 
         <div className='flex gap-4'>
