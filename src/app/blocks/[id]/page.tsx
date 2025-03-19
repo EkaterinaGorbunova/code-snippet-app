@@ -4,14 +4,14 @@ import { findBlock, deleteBlock } from '@/actions/dbServices';
 import { Button } from '@/components/ui/button';
 import DeleteForm from './DeleteForm';
 
-interface BlockShowPageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = Promise<{ id: string }>;
 
-export default async function BlockShowPage({ params }:  BlockShowPageProps) {
-  const { id } = await params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
+export default async function BlockShowPage({
+  params,
+}: {
+  params: Params;
+}) {
+  const { id } = await params;
   const block = await findBlock(parseInt(id));
 
   if (!block) {

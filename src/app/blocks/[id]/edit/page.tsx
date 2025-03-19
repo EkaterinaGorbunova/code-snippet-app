@@ -1,15 +1,15 @@
-import { notFound, redirect } from 'next/navigation';
-import { findBlock, editBlock } from '@/actions/dbServices';
+import { notFound } from 'next/navigation';
+import { findBlock } from '@/actions/dbServices';
 import EditForm from './EditForm';
 
-interface EditBlockPageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = Promise<{ id: string }>;
 
-export default async function EditBlockPage({ params }: EditBlockPageProps) {
-  const { id } = await params; // https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
+export default async function EditBlockPage({
+  params,
+}: {
+  params: Params;
+}) {
+  const { id } = await params;
   const block = await findBlock(parseInt(id));
 
   if (!block) {
@@ -21,6 +21,6 @@ export default async function EditBlockPage({ params }: EditBlockPageProps) {
       id={id}
       initialTitle={block.title}
       initialCode={block.code}
-      />
+    />
   );
 }

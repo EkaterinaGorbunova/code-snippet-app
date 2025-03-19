@@ -6,7 +6,11 @@ import { getUser } from '@/actions/authServices';
 
 import { Button } from '@/components/ui/button';
 
-export default async function Home({ searchParams }: { searchParams: { error?: string } }) {
+type PageProps = {
+  searchParams: Promise<{ error?: string }>;
+};
+
+export default async function Home({ searchParams }: PageProps) {
   const user = await getUser();
 
   if (!user) {
@@ -17,19 +21,6 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
     where: {
       userId: user.id,
     },
-  });
-
-  const codeBlocks = blocks.map((block) => {
-    return (
-      <Link
-        key={block.id}
-        href={`/blocks/${block.id}`}
-        className='flex justify-between items-center p-2 border rounded hover:bg-gray-50'
-      >
-        <div className="flex-1 mr-4">{block.title}</div>
-        <div className="text-gray-500">View</div>
-      </Link>
-    );
   });
 
   const { error } = await searchParams;
@@ -54,12 +45,21 @@ export default async function Home({ searchParams }: { searchParams: { error?: s
 
       <div className='flex flex-col gap-2'>
         {blocks.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">
-            You haven't created any code blocks yet.
-          </p>
-        ) : (
-          codeBlocks
-        )}
+            <p className="text-gray-500 text-center py-8">
+              You haven&apos;t created any code blocks yet.
+            </p>
+          ) : (
+            blocks.map((block) => (
+              <Link
+                key={block.id}
+                href={`/blocks/${block.id}`}
+                className='flex justify-between items-center p-2 border rounded hover:bg-gray-50'
+              >
+                <div className="flex-1 mr-4">{block.title}</div>
+                <div className="text-gray-500">View</div>
+              </Link>
+            ))
+          )}
       </div>
     </>
   );

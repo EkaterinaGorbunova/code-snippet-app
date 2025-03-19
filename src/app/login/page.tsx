@@ -9,7 +9,11 @@ import { getUser } from '@/actions/authServices';
 import { login } from '@/actions/authServices';
 import { getBaseUrl } from '@/actions/helperFunctions';
 
-export default async function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+type PageProps = {
+  searchParams: Promise<{ error?: string }>;
+};
+
+export default async function LoginPage({ searchParams }: PageProps) {
   const user = await getUser();
   
   if (user) {
@@ -57,7 +61,7 @@ export default async function LoginPage({ searchParams }: { searchParams: { erro
           </Button>
 
           <div className="flex items-center justify-center space-x-1 w-full mt-4 text-sm text-muted-foreground">
-            <span>Don't have an account?</span>
+            <span>Don&apos;t have an account?</span>
             <Button variant="link" className="h-auto p-0" size="sm" asChild>
               <a href={`${baseUrl}/register`}>Register</a>
             </Button>

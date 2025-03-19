@@ -9,7 +9,11 @@ import { getBaseUrl } from "@/actions/helperFunctions";
 import { getUser } from "@/actions/authServices";
 import { register } from "@/actions/authServices";
 
-export default async function RegisterPage({ searchParams }: { searchParams: { error?: string } }) {
+type PageProps = {
+  searchParams: Promise<{ error?: string }>;
+};
+
+export default async function RegisterPage({ searchParams }: PageProps) {
   const user = await getUser();
   
   if (user) {
@@ -17,7 +21,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: { e
   }
 
   const { error } = await searchParams;
-  const errorMessage = error ? decodeURIComponent(error) : ''; 
+  const errorMessage = error ? decodeURIComponent(error) : '';
   const baseUrl = await getBaseUrl();
 
   return (
@@ -25,11 +29,11 @@ export default async function RegisterPage({ searchParams }: { searchParams: { e
       <div className="w-full max-w-md space-y-6">
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Register</h1>
-          <p className="text-muted-foreground">Create your account to store and manage code snippets</p>
+          <p className="text-muted-foreground">Create your account</p>
         </div>
 
         <form action={register} className="space-y-4">
-          { errorMessage && <p className="text-center text-red-500">{errorMessage}</p> }
+          {errorMessage && <p className="text-center text-red-500">{errorMessage}</p>}
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
             <Input
@@ -50,7 +54,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: { e
             />
           </div>
 
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer">
+          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
             Register
           </Button>
 

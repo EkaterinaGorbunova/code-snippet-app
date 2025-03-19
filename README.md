@@ -60,7 +60,7 @@ DATABASE_URL="file:./dev.db"
 
 4. Set up your database:
 ```bash
-npx prisma migrate dev
+npx prisma generate
 ```
 
 5. Open Prisma Studio to view your database: 
