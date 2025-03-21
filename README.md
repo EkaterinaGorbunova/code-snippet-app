@@ -74,3 +74,21 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Debugging
+
+When using a package like 'react-modal' with Node version `23.2`, the build fails.
+
+```bash
+Creating an optimized production build ...
+Failed to compile.
+
+./src/app/blocks/[id]/edit/EditForm.tsx + 3 modules
+Unexpected end of JSON input
+```
+
+Solution:
+
+Use Node version `23.3.0`
+
+https://github.com/webpack/webpack/issues/18963

@@ -10,12 +10,10 @@ interface CodeEditorProps {
 
 export function CodeEditor({ existingCode, onChange, onAutoSave }: CodeEditorProps) {
   const [code, setCode] = useState(existingCode);
-  const [debouncedCode, setDebouncedCode] = useState(code);
 
   // Debounce effect
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDebouncedCode(code);
       if (onAutoSave) {
         onAutoSave(code);
       }
