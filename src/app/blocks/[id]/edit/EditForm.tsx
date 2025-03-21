@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Modal from 'react-modal';
-import Editor from '@monaco-editor/react';
+
 import { editBlock } from '@/actions/dbServices';
 import { Button } from '@/components/ui/button';
+import { CodeEditor } from '@/components/CodeEditor';
 
 Modal.setAppElement('#root');
 
@@ -58,20 +59,9 @@ export default function EditForm({
           <div className='flex gap-4'>
             <label className='w-12'>Code</label>
             <div className='w-full h-[400px] border rounded'>
-              <Editor
-                height='100%'
-                defaultLanguage='javascript'
-                value={code}
-                onChange={(value) => setCode(value || '')}
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  lineNumbers: 'on',
-                  roundedSelection: false,
-                  scrollBeyondLastLine: false,
-                  readOnly: false,
-                  automaticLayout: true,
-                }}
+              <CodeEditor
+                existingCode={code}
+                onChange={setCode}
               />
             </div>
           </div>
