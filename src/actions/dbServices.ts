@@ -51,7 +51,7 @@ export async function editBlock(id: number, formData: FormData) {
     console.error('Error updating block:', error);
   }
 
-  redirect(`/blocks/${id}`);
+  // redirect(`/blocks/${id}`);
 }
 
 export async function deleteBlock(id: number) {
