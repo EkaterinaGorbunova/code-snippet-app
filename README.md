@@ -3,6 +3,15 @@ The Code Snippet App is a web-based tool that allows developers to create, edit 
 
 > **Note**: Currently, this application runs locally and is not deployed to production.
 
+Login Form
+![Login Form](public/screenshots/login-page.png)
+
+Home page with user's code snippets
+![Home Page](public/screenshots/home-page.png)
+
+Edit page with auto-save functionality
+![Edit Page](public/screenshots/edit-page.png)
+
 ## Features
 - User Authentication
   - Register new account
