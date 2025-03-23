@@ -3,6 +3,8 @@ The Code Snippet App is a web-based tool that allows developers to create, edit 
 
 This is App built with Next.js 15, using TypeScript, Tailwind CSS and Shadcn UI for the frontend and Prisma with SQLite for the database.
 
+> **Note**: Currently, this application runs locally and is not deployed to production.
+
 ## Features
 - User Authentication
   - Register new account
