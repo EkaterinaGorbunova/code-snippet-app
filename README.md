@@ -7,19 +7,26 @@ This is App built with Next.js 15, using TypeScript, Tailwind CSS and Shadcn UI 
 - User Authentication
   - Register new account
   - Login/Logout functionality
-  - User-specific snippets
+  - Personal workspace for each user
+  - Stay logged in for 7 days with session management using cookies
 - Code Snippets Management
   - Create and store code snippets with titles
   - View a list of all personal snippets
   - View individual snippets
   - Edit existing snippets
   - Delete snippets
+- Advanced Editor Features
+  - VS Code editor integration
+  - Real-time code synchronization
+  - Auto-save functionality
+  - Syntax highlighting
+  - Reset changes confirmation
 - Modern UI
   - Clean and intuitive interface
-  - Interactive dialog confirmations for important actions
+  - Interactive dialog confirmations
     - Confirmation dialogs for delete operations
-    - Confirmation dialogs for edit operations
-    - Accessible modal windows using Radix UI
+    - Confirmation dialog for resetting changes
+    - Responsive design for mobile and desktop
 
 ## Technical Stack
 The project follows a modern web architecture with:
@@ -29,6 +36,7 @@ The project follows a modern web architecture with:
 - UI components from Shadcn UI library
 - Database operations through Prisma ORM
 - Clean routing structure using Next.js file-based routing
+- Secure session management using HTTP-only cookies
 - Server Actions for form handling
 - SQLite database for data persistence
 
@@ -37,7 +45,7 @@ The App uses two main tables:
 - `User`: Stores user information (`id`, `username`, `password`)
 - `Block`: Stores code snippets (`id`, `title`, `code`, `userId`)
 
-## Getting Started
+## Get Started
 
 First, set up your environment:
 
@@ -74,6 +82,12 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can either:
+- Register a new account, or
+- Use existing test account:
+  - Username: `john123`
+  - Password: `123`
 
 ## Debugging
 
