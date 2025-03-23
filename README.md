@@ -12,6 +12,18 @@ Home page with user's code snippets
 Edit page with auto-save functionality
 ![Edit Page](public/screenshots/edit-page.png)
 
+## Technical Stack
+The project follows a modern web architecture with:
+- Server-side rendering via Next.js 15
+- Type safety with TypeScript
+- Responsive styling using Tailwind CSS
+- UI components from Shadcn UI library
+- Database operations through Prisma ORM
+- Clean routing structure using Next.js file-based routing
+- Secure session management using HTTP-only cookies
+- Server Actions for form handling
+- SQLite database for data persistence
+
 ## Features
 - User Authentication
   - Register new account
@@ -36,18 +48,6 @@ Edit page with auto-save functionality
     - Confirmation dialogs for delete operations
     - Confirmation dialog for resetting changes
     - Responsive design for mobile and desktop
-
-## Technical Stack
-The project follows a modern web architecture with:
-- Server-side rendering via Next.js 15
-- Type safety with TypeScript
-- Responsive styling using Tailwind CSS
-- UI components from Shadcn UI library
-- Database operations through Prisma ORM
-- Clean routing structure using Next.js file-based routing
-- Secure session management using HTTP-only cookies
-- Server Actions for form handling
-- SQLite database for data persistence
 
 ## Data Model
 The App uses two main tables:
