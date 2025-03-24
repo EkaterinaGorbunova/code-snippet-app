@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: PageProps) {
       <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6'>
         <h2 className='text-xl font-bold text-gray-800'>Code Blocks</h2>
         <Link href='/blocks/create' className='w-full sm:w-auto'>
-          <Button className='w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'>
+          <Button className='w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white cursor-pointer'>
             Create New Block
           </Button>
         </Link>
