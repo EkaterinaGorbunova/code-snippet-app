@@ -1,7 +1,7 @@
 # Code Snippet App
 The Code Snippet App is a web-based tool that allows developers to create, edit and manage reusable code snippets efficiently. It features real-time code synchronization and auto-save functionality, ensuring your work is always preserved.
 
-> **Note**: Currently, this application runs locally and is not deployed to production.
+🚀 **[Live Demo](https://code-snippet-proapp.vercel.app/login)**
 
 Login Form
 ![Login Form](public/screenshots/login-page.png)
@@ -22,7 +22,7 @@ The project follows a modern web architecture with:
 - Clean routing structure using Next.js file-based routing
 - Secure session management using HTTP-only cookies
 - Server Actions for form handling
-- SQLite database for data persistence
+- PostgreSQL database for data persistence
 
 ## Features
 - User Authentication
@@ -72,12 +72,13 @@ npm install
 
 Create `.env` file in the root directory with:
 ```
-DATABASE_URL="file:./dev.db"
+DATABASE_URL=YOUR_POSTGRESQL_CONNECTION_STRING"
 ```
 
 4. Set up your database:
 ```bash
 npx prisma generate
+npx prisma migrate dev --name init
 ```
 
 5. Open Prisma Studio to view your database: 
