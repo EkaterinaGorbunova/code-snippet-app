@@ -97,7 +97,7 @@ You can either:
 - Register a new account, or
 - Use existing test account:
   - Username: `john123`
-  - Password: `123`
+  - Password: `john123`
 
 ## Debugging
 
