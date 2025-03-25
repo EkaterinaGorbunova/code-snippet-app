@@ -1,5 +1,5 @@
 # Code Snippet App
-The Code Snippet App is a web-based tool that allows developers to create, edit and manage reusable code snippets efficiently. It features real-time code synchronization and auto-save functionality, ensuring your work is always preserved.
+The Code Snippet App is a web-based tool that allows developers to create, edit and manage reusable code snippets efficiently. It features VS Code-like editor integration, real-time code synchronization and auto-save functionality. It provides a familiar and reliable environment for managing your code snippets.
 
 🚀 **[Live Demo](https://code-snippet-proapp.vercel.app/)**
 
